@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Expense Summary</h2>
+        <a class="button" href="{{ url_for('index') }}">Back Home</a>
+        <table>
+            <tr><th colspan="2">Total by Category</th></tr>
+            {% for cat, amt in category_totals.items() %}
+            <tr><td>{{ cat }}</td><td>₹{{ '%.2f' % amt }}</td></tr>
+            {% endfor %}
+        </table>
+        <br>
+        <table>
+            <tr><th colspan="2">Spending Over Time</th></tr>
+            {% for date, amt in daily_totals.items() %}
+            <tr><td>{{ date }}</td><td>₹{{ '%.2f' % amt }}</td></tr>
+            {% endfor %}
+        </table>
+        <h3>Total Overall: ₹{{ '%.2f' % total }}</h3>
+    </div>
+</body>
+</html>
